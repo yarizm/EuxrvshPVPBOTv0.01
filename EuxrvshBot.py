@@ -64,19 +64,33 @@ async def pick(api: BotAPI, message: Message, params=None):
 @Commands("/OUT", "/out")
 async def out(api: BotAPI, message: Message, params=None):
     try:
+        # 回合开始时触发所有玩家的灰烧效果
+        burn_report = newgame.trigger_all_burning()
+        burn_str = '\n'.join(str(e) for e in burn_report) if burn_report else ""
+        
+        # 回合开始时触发所有玩家的恢复效果
+        heal_report = newgame.trigger_all_recovery()
+        heal_str = '\n'.join(str(e) for e in heal_report) if heal_report else ""
+        
         newgame.resetdef()
         newgame.remsubauto()
-        data_report = newgame.turnend(1)
         prob_report = newgame.outprint_optimized()
+        data_report = newgame.turnend(1)
 
-        data_str = '\n\n'.join(str(e) for e in data_report)
+
         prob_str = '\n\n'.join(str(e) for e in prob_report)
+        data_str = '\n\n'.join(str(e) for e in data_report)
+        
+        # 组合输出信息
+        burn_section = f"--- 灼烧伤害 ---\n{burn_str}\n\n" if burn_str else ""
+        heal_section = f"--- 恢复效果 ---\n{heal_str}\n\n" if heal_str else ""
 
         await message.reply(content=f"【回合结算】\n\n"
-                                    f"--- 行动权判定 ---\n{prob_str}\n\n"
+                                    f"{burn_section}"
+                                    f"{heal_section}"
+                                    f"--- 行动值回复 ---\n{prob_str}\n\n"
                                     f"--- 玩家状态 ---\n{data_str}\n\n"
-                                    f"请获得行动权的玩家输入指令行动。\n"
-                                    f"放弃回合请输 /LGIVEUP [玩家id]")
+                                    f"请拥有足够行动值的玩家输入指令行动。")
     except Exception as e:
         _log.error(e)
         await message.reply(content=f"结算报错: {e}")
@@ -148,14 +162,29 @@ async def hpc(api: BotAPI, message: Message, params=None):
 
 @Commands("/ATTACK", "/attack")
 async def attack(api: BotAPI, message: Message, params=None):
+    """格式: /ATTACK [攻击者ID] [目标ID] [伤害]"""
     if not params: return
     args = params.split()
     try:
-        if len(args) < 2:
-            await message.reply(content="参数不足，格式：/ATTACK [目标ID] [伤害]")
+        if len(args) < 3:
+            await message.reply(content="参数不足，格式：/ATTACK [攻击者ID] [目标ID] [伤害]")
             return True
-        res = newgame.attack(args[0], args[1])
-        await message.reply(content=f"{res}")
+        
+        attacker_id = args[0]
+        target_id = args[1]
+        damage = args[2]
+        
+        # 先触发攻击者的流血效果（执行动作时触发）
+        bleed_msg = newgame.trigger_bleeding(attacker_id)
+        
+        # 执行攻击
+        res = newgame.attack(attacker_id, target_id, damage)
+        
+        # 组合返回信息
+        if bleed_msg:
+            await message.reply(content=f"{bleed_msg}\n{res}")
+        else:
+            await message.reply(content=f"{res}")
     except Exception as e:
         await message.reply(content=f"攻击出错: {e}")
     return True
@@ -163,27 +192,33 @@ async def attack(api: BotAPI, message: Message, params=None):
 
 @Commands("/SKILL", "/skill")
 async def skill(api: BotAPI, message: Message, params=None):
+    """格式: /SKILL [玩家ID] [技能号]"""
     if not params: return
     args = params.split()
     try:
-        res = newgame.skill_use(args[0], args[1])
-        await message.reply(content=f"{res}")
+        if len(args) < 2:
+            await message.reply(content="参数不足，格式：/SKILL [玩家ID] [技能号]")
+            return True
+        
+        player_id = args[0]
+        skill_idx = args[1]
+        
+        # 先触发流血效果（执行动作时触发）
+        bleed_msg = newgame.trigger_bleeding(player_id)
+        
+        # 执行技能
+        res = newgame.skill_use(player_id, skill_idx)
+        
+        # 组合返回信息
+        if bleed_msg:
+            await message.reply(content=f"{bleed_msg}\n{res}")
+        else:
+            await message.reply(content=f"{res}")
     except Exception as e:
         await message.reply(content=f"技能出错: {e}")
     return True
 
 
-@Commands("/LGIVEUP", "/lgiveup")
-async def lgiveup(api: BotAPI, message: Message, params=None):
-    if not params: return
-    try:
-        pid = params.split()[0]
-        res = newgame.latergiveup(pid)
-        # latergiveup 返回的是 list，取第一个元素
-        await message.reply(content=f"{res[0]}")
-    except Exception as e:
-        await message.reply(content=f"操作出错: {e}")
-    return True
 
 
 # ... 其他属性指令 (ATKC, DEFC, CDC, DISC) 保持原逻辑即可，注意 split() ...
@@ -217,6 +252,67 @@ async def cdc(api: BotAPI, message: Message, params=None):
     args = params.split()
     res = newgame.cd_change(args[0], args[1], args[2])
     await message.reply(content=f"{res}")
+    return True
+
+
+@Commands("/BLEED", "/bleed")
+async def bleed(api: BotAPI, message: Message, params=None):
+    """施加流血效果：/BLEED [玩家ID] [持续回合]"""
+    if not params:
+        await message.reply(content="参数不足，格式：/BLEED [玩家ID] [持续回合]")
+        return True
+    args = params.split()
+    try:
+        if len(args) < 2:
+            await message.reply(content="参数不足，格式：/BLEED [玩家ID] [持续回合]")
+            return True
+        player_id = args[0]
+        turns = args[1]
+        res = newgame.bleeding(player_id, turns)
+        await message.reply(content=f"{res}")
+    except Exception as e:
+        await message.reply(content=f"施加流血失败: {e}")
+    return True
+
+
+@Commands("/BURN", "/burn")
+async def burn(api: BotAPI, message: Message, params=None):
+    """施加灰烧效果：/BURN [玩家ID] [持续回合]"""
+    if not params:
+        await message.reply(content="参数不足，格式：/BURN [玩家ID] [持续回合]")
+        return True
+    args = params.split()
+    try:
+        if len(args) < 2:
+            await message.reply(content="参数不足，格式：/BURN [玩家ID] [持续回合]")
+            return True
+        player_id = args[0]
+        turns = args[1]
+        res = newgame.burning(player_id, turns)
+        await message.reply(content=f"{res}")
+    except Exception as e:
+        await message.reply(content=f"施加灰烧失败: {e}")
+    return True
+
+
+@Commands("/HEAL", "/heal")
+async def heal(api: BotAPI, message: Message, params=None):
+    """施加恢复效果：/HEAL [玩家ID] [恢复等级] [持续回合]"""
+    if not params:
+        await message.reply(content="参数不足，格式：/HEAL [玩家ID] [恢复等级] [持续回合]")
+        return True
+    args = params.split()
+    try:
+        if len(args) < 3:
+            await message.reply(content="参数不足，格式：/HEAL [玩家ID] [恢复等级] [持续回合]")
+            return True
+        player_id = args[0]
+        heal_amount = args[1]
+        turns = args[2]
+        res = newgame.recovery(player_id, heal_amount, turns)
+        await message.reply(content=f"{res}")
+    except Exception as e:
+        await message.reply(content=f"施加恢复失败: {e}")
     return True
 
 
@@ -275,7 +371,10 @@ async def help(api: BotAPI, message: Message, params=None):
            "改变DEF：/DEFC [ID] [数值] \n"
            "改变CD：/CDC [ID] [技能号] [数值] \n"
            "使用技能：/SKILL [ID] [技能号] \n"
-           "攻击：/ATTACK [目标ID] [伤害] \n"
+           "攻击：/ATTACK [攻击者ID] [目标ID] [伤害] \n"
+           "流血：/BLEED [玩家ID] [持续回合] \n"
+           "灰烧：/BURN [玩家ID] [持续回合] \n"
+           "恢复：/HEAL [玩家ID] [恢复等级] [持续回合] \n"
            "查看状态：/ROLEDATA \n"
            "回合结算：/OUT \n"
            "结束游戏：/END\n"
@@ -295,9 +394,9 @@ class MyClient(botpy.Client):
     async def on_group_at_message_create(self, message: Message):
         handlers = [
             start, pick, out, end, ai,
-            hpc, atkc, defc, cdc, skill, attack, disc,
+            hpc, atkc, defc, cdc, skill, attack, disc, bleed, burn, heal,
             remtime, timeset, timeinfo,
-            roledata, lgiveup, help,rate
+            roledata, help, rate
         ]
         for handler in handlers:
             if await handler(api=self.api, message=message):
