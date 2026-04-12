@@ -1,0 +1,9 @@
+name: astrbot_plugin_euxrvsh_pvp
+display_name: Euxrvsh PVP
+desc: Euxrvsh PvP插件
+version: 1.0.0
+author: YARIZM
+repo: https://github.com/yarizm/EuxrvshPVPBOT
+astrbot_version: ">=4.16,<5"
+support_platforms:
+  - qq_official
