@@ -1,0 +1,34 @@
+{
+  "db_host": {
+    "description": "MySQL Host",
+    "type": "string",
+    "default": "localhost"
+  },
+  "db_user": {
+    "description": "MySQL User",
+    "type": "string",
+    "default": "root"
+  },
+  "db_password": {
+    "description": "MySQL Password",
+    "type": "string",
+    "default": "",
+    "hint": "鏁版嵁搴撳瘑鐮?",
+    "obvious_hint": true
+  },
+  "db_name": {
+    "description": "MySQL Database",
+    "type": "string",
+    "default": "euxrvsh"
+  },
+  "db_pool_name": {
+    "description": "MySQL Pool Name",
+    "type": "string",
+    "default": "game_pool"
+  },
+  "db_pool_size": {
+    "description": "MySQL Pool Size",
+    "type": "int",
+    "default": 20
+  }
+}
