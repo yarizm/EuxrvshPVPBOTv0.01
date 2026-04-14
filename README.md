@@ -170,8 +170,3 @@ python -m py_compile astrbot_plugin_euxrvsh_pvp/main.py
 pytest tests -q -p no:cacheprovider
 ```
 
-## 说明
-
-- 当前仓库里可能还保留了一些本地开发文件，例如 `.idea`、`.vs`、`.vscode`、`.venv`、`__pycache__`
-- 这些文件不属于插件运行所必需内容
-- 如果你想把仓库整理成纯插件发布仓，可以后续再统一清理
