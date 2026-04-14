@@ -1,3 +1,3 @@
-from .output_king import OutputKingCharacter
+from .output_king import build_output_king_role
 
-__all__ = ["OutputKingCharacter"]
+__all__ = ["build_output_king_role"]

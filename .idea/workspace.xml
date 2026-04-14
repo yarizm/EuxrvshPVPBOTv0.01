@@ -4,154 +4,145 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ebcdae59-ac21-4029-96a1-6b5064ad6650" name="更改" comment="Add PyCharm IDE configuration files">
-      <change afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/_conf_schema.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/euxrvsh_core/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/euxrvsh_core/astrbot_memory.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/euxrvsh_core/command_dispatcher.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/euxrvsh_core/config.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/euxrvsh_core/domain/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/euxrvsh_core/domain/characters/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/euxrvsh_core/domain/characters/output_king.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/euxrvsh_core/domain/registry.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/euxrvsh_core/repositories/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/euxrvsh_core/repositories/game_repository.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/euxrvsh_core/runtime.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/euxrvsh_core/services/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/euxrvsh_core/services/game_service.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/euxrvsh_core/startup_check.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/main.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/metadata.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/ai/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/ai/genai/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/ai/genai/embedding.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/ai/genai/generation.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/ai/genai/vector_store.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/ai/ml/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/ai/ml/base.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/ai/ml/classifier.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/ai/ml/model.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/ai/ml/outlier.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/ai/ml/regressor.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/ai/ml/transformer.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/ai/utils/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/ai/utils/atomic_cursor.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/ai/utils/dependencies.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/ai/utils/utils.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/_decorating.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/_scripting.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/abstracts.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/aio/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/aio/_decorating.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/aio/abstracts.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/aio/authentication.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/aio/charsets.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/aio/connection.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/aio/cursor.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/aio/logger.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/aio/network.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/aio/plugins/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/aio/plugins/authentication_kerberos_client.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/aio/plugins/authentication_ldap_sasl_client.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/aio/plugins/authentication_oci_client.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/aio/plugins/authentication_openid_connect_client.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/aio/plugins/authentication_webauthn_client.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/aio/plugins/caching_sha2_password.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/aio/plugins/mysql_clear_password.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/aio/plugins/mysql_native_password.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/aio/plugins/sha256_password.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/aio/pooling.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/aio/protocol.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/aio/py.typed" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/aio/utils.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/authentication.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/charsets.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/connection.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/connection_cext.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/constants.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/conversion.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/cursor.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/cursor_cext.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/custom_types.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/dbapi.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/django/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/django/base.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/django/client.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/django/compiler.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/django/creation.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/django/features.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/django/introspection.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/django/operations.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/django/schema.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/django/validation.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/errorcode.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/errors.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/locales/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/locales/eng/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/locales/eng/client_error.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/logger.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/network.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/opentelemetry/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/opentelemetry/constants.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/opentelemetry/context_propagation.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/opentelemetry/instrumentation.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/optionfiles.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/plugins/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/plugins/authentication_kerberos_client.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/plugins/authentication_ldap_sasl_client.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/plugins/authentication_oci_client.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/plugins/authentication_openid_connect_client.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/plugins/authentication_webauthn_client.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/plugins/caching_sha2_password.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/plugins/mysql_clear_password.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/plugins/mysql_native_password.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/plugins/sha256_password.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/pooling.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/protocol.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/py.typed" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/tls_ciphers.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/types.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/utils.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/version.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/vendor/libcrypto-3-x64.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/vendor/libsasl.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/vendor/libssl-3-x64.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/vendor/plugin/authentication_kerberos_client.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/vendor/plugin/authentication_ldap_sasl_client.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/vendor/plugin/authentication_oci_client.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/vendor/plugin/authentication_openid_connect_client.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/vendor/plugin/authentication_webauthn_client.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/vendor/plugin/mysql_native_password.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/requirements.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/character_logic/output_king.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/cmd_config.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/t2i_templates/astrbot_powershell.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/t2i_templates/base.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/db.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/euxrvsh_core/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/euxrvsh_core/astrbot_memory.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/euxrvsh_core/command_dispatcher.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/euxrvsh_core/config.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/euxrvsh_core/domain/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/euxrvsh_core/domain/characters/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/euxrvsh_core/domain/characters/output_king.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/euxrvsh_core/domain/registry.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/euxrvsh_core/repositories/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/euxrvsh_core/repositories/game_repository.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/euxrvsh_core/runtime.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/euxrvsh_core/services/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/euxrvsh_core/services/game_service.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/euxrvsh_core/startup_check.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/game_utils.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/plugins/输出大王.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="ebcdae59-ac21-4029-96a1-6b5064ad6650" name="更改" comment="astrbot插件">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/EuxrvshBot.py" beforeDir="false" afterPath="$PROJECT_DIR$/EuxrvshBot.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/_conf_schema.json" beforeDir="false" afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/_conf_schema.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/euxrvsh_core/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/euxrvsh_core/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/euxrvsh_core/command_dispatcher.py" beforeDir="false" afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/euxrvsh_core/command_dispatcher.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/euxrvsh_core/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/euxrvsh_core/config.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/euxrvsh_core/domain/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/euxrvsh_core/domain/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/euxrvsh_core/domain/characters/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/euxrvsh_core/domain/characters/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/euxrvsh_core/domain/characters/output_king.py" beforeDir="false" afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/euxrvsh_core/domain/characters/output_king.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/euxrvsh_core/domain/registry.py" beforeDir="false" afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/euxrvsh_core/domain/registry.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/euxrvsh_core/repositories/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/euxrvsh_core/repositories/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/euxrvsh_core/repositories/game_repository.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/euxrvsh_core/runtime.py" beforeDir="false" afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/euxrvsh_core/runtime.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/euxrvsh_core/services/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/euxrvsh_core/services/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/euxrvsh_core/services/game_service.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/euxrvsh_core/startup_check.py" beforeDir="false" afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/euxrvsh_core/startup_check.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/metadata.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/metadata.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/ai/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/ai/genai/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/ai/genai/embedding.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/ai/genai/generation.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/ai/genai/vector_store.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/ai/ml/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/ai/ml/base.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/ai/ml/classifier.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/ai/ml/model.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/ai/ml/outlier.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/ai/ml/regressor.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/ai/ml/transformer.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/ai/utils/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/ai/utils/atomic_cursor.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/ai/utils/dependencies.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/ai/utils/utils.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/_decorating.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/_scripting.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/abstracts.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/aio/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/aio/_decorating.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/aio/abstracts.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/aio/authentication.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/aio/charsets.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/aio/connection.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/aio/cursor.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/aio/logger.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/aio/network.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/aio/plugins/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/aio/plugins/authentication_kerberos_client.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/aio/plugins/authentication_ldap_sasl_client.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/aio/plugins/authentication_oci_client.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/aio/plugins/authentication_openid_connect_client.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/aio/plugins/authentication_webauthn_client.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/aio/plugins/caching_sha2_password.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/aio/plugins/mysql_clear_password.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/aio/plugins/mysql_native_password.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/aio/plugins/sha256_password.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/aio/pooling.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/aio/protocol.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/aio/py.typed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/aio/utils.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/authentication.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/charsets.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/connection.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/connection_cext.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/constants.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/conversion.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/cursor.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/cursor_cext.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/custom_types.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/dbapi.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/django/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/django/base.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/django/client.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/django/compiler.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/django/creation.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/django/features.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/django/introspection.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/django/operations.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/django/schema.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/django/validation.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/errorcode.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/errors.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/locales/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/locales/eng/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/locales/eng/client_error.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/logger.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/network.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/opentelemetry/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/opentelemetry/constants.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/opentelemetry/context_propagation.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/opentelemetry/instrumentation.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/optionfiles.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/plugins/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/plugins/authentication_kerberos_client.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/plugins/authentication_ldap_sasl_client.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/plugins/authentication_oci_client.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/plugins/authentication_openid_connect_client.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/plugins/authentication_webauthn_client.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/plugins/caching_sha2_password.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/plugins/mysql_clear_password.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/plugins/mysql_native_password.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/plugins/sha256_password.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/pooling.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/protocol.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/py.typed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/tls_ciphers.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/types.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/utils.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/connector/version.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/vendor/libcrypto-3-x64.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/vendor/libsasl.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/vendor/libssl-3-x64.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/vendor/plugin/authentication_kerberos_client.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/vendor/plugin/authentication_ldap_sasl_client.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/vendor/plugin/authentication_oci_client.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/vendor/plugin/authentication_openid_connect_client.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/vendor/plugin/authentication_webauthn_client.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/mysql/vendor/plugin/mysql_native_password.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.py" beforeDir="false" afterPath="$PROJECT_DIR$/db.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/euxrvsh_core/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/euxrvsh_core/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/euxrvsh_core/command_dispatcher.py" beforeDir="false" afterPath="$PROJECT_DIR$/euxrvsh_core/command_dispatcher.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/euxrvsh_core/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/euxrvsh_core/config.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/euxrvsh_core/domain/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/euxrvsh_core/domain/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/euxrvsh_core/domain/characters/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/euxrvsh_core/domain/characters/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/euxrvsh_core/domain/characters/output_king.py" beforeDir="false" afterPath="$PROJECT_DIR$/euxrvsh_core/domain/characters/output_king.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/euxrvsh_core/domain/registry.py" beforeDir="false" afterPath="$PROJECT_DIR$/euxrvsh_core/domain/registry.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/euxrvsh_core/repositories/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/euxrvsh_core/repositories/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/euxrvsh_core/repositories/game_repository.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/euxrvsh_core/runtime.py" beforeDir="false" afterPath="$PROJECT_DIR$/euxrvsh_core/runtime.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/euxrvsh_core/services/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/euxrvsh_core/services/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/euxrvsh_core/services/game_service.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/euxrvsh_core/startup_check.py" beforeDir="false" afterPath="$PROJECT_DIR$/euxrvsh_core/startup_check.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/game.py" beforeDir="false" afterPath="$PROJECT_DIR$/game.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/chat_api.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/game_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/game_utils.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -175,7 +166,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="plugin" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -216,7 +207,7 @@
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
     &quot;dev.sweep.assistant.data.RecentlyUsedFiles&quot;: &quot;game.py;EuxrvshBot.py;plugins\\chat_api.py;config.yaml;plugins\\system_prompt.txt&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;plugin&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
     &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/YARIZM/PycharmProjects/EuxrvshPVPBOT&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
@@ -303,6 +294,8 @@
       <workItem from="1775227504576" duration="33000" />
       <workItem from="1775971079567" duration="4350000" />
       <workItem from="1775999791445" duration="566000" />
+      <workItem from="1776083420761" duration="1809000" />
+      <workItem from="1776163597162" duration="2894000" />
     </task>
     <task id="LOCAL-00001" summary="Add PyCharm IDE configuration files">
       <option name="closed" value="true" />
@@ -320,7 +313,23 @@
       <option name="project" value="LOCAL" />
       <updated>1774962750120</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="astrbot插件">
+      <option name="closed" value="true" />
+      <created>1776003176688</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1776003176688</updated>
+    </task>
+    <task id="LOCAL-00004" summary="astrbot插件">
+      <option name="closed" value="true" />
+      <created>1776003228112</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1776003228112</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -339,7 +348,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Add PyCharm IDE configuration files" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add PyCharm IDE configuration files" />
+    <MESSAGE value="astrbot插件" />
+    <option name="LAST_COMMIT_MESSAGE" value="astrbot插件" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/EuxrvshPVPBOT$db.coverage" NAME="db 覆盖结果" MODIFIED="1770394353418" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />

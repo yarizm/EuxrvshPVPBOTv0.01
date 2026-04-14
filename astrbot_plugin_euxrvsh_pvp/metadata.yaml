@@ -1,9 +1,12 @@
 name: astrbot_plugin_euxrvsh_pvp
 display_name: Euxrvsh PVP
-desc: Euxrvsh PvP插件
-version: 1.0.0
+desc: SQLite 本地存储的 AI Tool 优先 PvP 插件
+version: 2.1.0
 author: YARIZM
-repo: https://github.com/yarizm/EuxrvshPVPBOT
+repo: https://github.com/yarizm/EuxrvshPVPBOTv0.01
 astrbot_version: ">=4.16,<5"
 support_platforms:
   - qq_official
+  - aiocqhttp
+  - telegram
+  - discord

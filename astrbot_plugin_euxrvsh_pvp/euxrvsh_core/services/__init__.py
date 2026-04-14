@@ -1,3 +1,3 @@
-from .game_service import GameService
+from .battle_service import BattleService
 
-__all__ = ["GameService"]
+__all__ = ["BattleService"]

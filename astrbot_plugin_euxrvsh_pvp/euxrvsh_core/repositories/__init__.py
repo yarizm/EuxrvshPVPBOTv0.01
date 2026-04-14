@@ -1,3 +1,4 @@
-from .game_repository import MySQLGameRepository
+from .base import GameRepository
+from .sqlite_repository import SQLiteGameRepository
 
-__all__ = ["MySQLGameRepository"]
+__all__ = ["GameRepository", "SQLiteGameRepository"]
