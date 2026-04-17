@@ -4,9 +4,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ebcdae59-ac21-4029-96a1-6b5064ad6650" name="更改" comment="README">
+    <list default="true" id="ebcdae59-ac21-4029-96a1-6b5064ad6650" name="更改" comment="功能更新">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/_conf_schema.json" beforeDir="false" afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/_conf_schema.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/euxrvsh_core/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/euxrvsh_core/config.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/euxrvsh_core/domain/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/euxrvsh_core/domain/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/euxrvsh_core/domain/characters/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/euxrvsh_core/domain/characters/output_king.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/euxrvsh_core/domain/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/euxrvsh_core/domain/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/euxrvsh_core/domain/registry.py" beforeDir="false" afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/euxrvsh_core/domain/registry.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/euxrvsh_core/repositories/base.py" beforeDir="false" afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/euxrvsh_core/repositories/base.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/euxrvsh_core/repositories/sqlite_repository.py" beforeDir="false" afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/euxrvsh_core/repositories/sqlite_repository.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/euxrvsh_core/runtime.py" beforeDir="false" afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/euxrvsh_core/runtime.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/euxrvsh_core/services/battle_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/euxrvsh_core/services/battle_service.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/euxrvsh_core/startup_check.py" beforeDir="false" afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/euxrvsh_core/startup_check.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/metadata.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/metadata.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/plugin/controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/astrbot_plugin_euxrvsh_pvp/plugin/controller.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -159,7 +174,9 @@
       <workItem from="1775971079567" duration="4350000" />
       <workItem from="1775999791445" duration="566000" />
       <workItem from="1776083420761" duration="1809000" />
-      <workItem from="1776163597162" duration="4275000" />
+      <workItem from="1776163597162" duration="6091000" />
+      <workItem from="1776233129015" duration="14000" />
+      <workItem from="1776348445388" duration="1213000" />
     </task>
     <task id="LOCAL-00001" summary="Add PyCharm IDE configuration files">
       <option name="closed" value="true" />
@@ -217,7 +234,23 @@
       <option name="project" value="LOCAL" />
       <updated>1776168070495</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="README">
+      <option name="closed" value="true" />
+      <created>1776168192641</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1776168192641</updated>
+    </task>
+    <task id="LOCAL-00009" summary="功能更新">
+      <option name="closed" value="true" />
+      <created>1776176776753</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1776176776753</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -238,7 +271,8 @@
     <MESSAGE value="Add PyCharm IDE configuration files" />
     <MESSAGE value="astrbot插件" />
     <MESSAGE value="README" />
-    <option name="LAST_COMMIT_MESSAGE" value="README" />
+    <MESSAGE value="功能更新" />
+    <option name="LAST_COMMIT_MESSAGE" value="功能更新" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/EuxrvshPVPBOT$db.coverage" NAME="db 覆盖结果" MODIFIED="1770394353418" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />

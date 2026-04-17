@@ -1,16 +1,21 @@
 {
+  "storage_root": {
+    "description": "Plugin storage root directory",
+    "type": "string",
+    "default": ""
+  },
   "sqlite_path": {
-    "description": "SQLite Database Path",
+    "description": "Compatibility only: runtime.db path from legacy versions",
     "type": "string",
     "default": ""
   },
   "enable_fallback_commands": {
-    "description": "Enable /pvp Fallback Commands",
+    "description": "Enable /pvp fallback commands",
     "type": "bool",
     "default": true
   },
   "enable_debug_tools": {
-    "description": "Enable Debug Tools",
+    "description": "Enable debug tools",
     "type": "bool",
     "default": false
   }

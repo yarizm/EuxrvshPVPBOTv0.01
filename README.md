@@ -1,35 +1,16 @@
-# Euxrvsh PVP AstrBot Plugin
+# Euxrvsh PvP AstrBot Plugin
 
 一个面向 AstrBot 的本地 PvP 游戏插件。
 
-当前版本已经重构为：
+当前版本重点是：
 
-- SQLite 本地存储
-- AI Tool 优先调用
-- 少量 `/pvp` 兜底命令
-- 按会话隔离对局
+- 运行态使用 SQLite
+- 角色定义改为 JSON 文件加载
+- 插件数据目录清晰可见
+- 支持用户通过 `roles/custom/*.json` 扩展角色
+- AI Tool 优先，`/pvp` 作为兜底命令
 
-项目仓库：
-[https://github.com/yarizm/EuxrvshPVPBOTv0.01](https://github.com/yarizm/EuxrvshPVPBOTv0.01)
-
-## 功能特性
-
-- 使用 AstrBot 的 `llm_tool` 能力，让 AI 在合适时机自动调用 PvP 工具
-- 提供统一的 `/pvp` 兜底命令，便于手动测试和调试
-- 使用 SQLite 单文件存储，不依赖 MySQL
-- 每个会话独立保存一局对战，互不干扰
-- 插件内置角色定义、战斗状态、效果、冷却和战斗日志
-- 对模糊自然语言增加了二次确认提示，降低误触发概率
-
-## 当前角色
-
-- `output_king` / `输出大王`
-
-当前已实现技能：
-
-- `focus_shift` / `聚势`
-- `sidestep` / `侧闪`
-- `chain_burst` / `链爆`
+项目仓库：[https://github.com/yarizm/EuxrvshPVPBOTv0.01](https://github.com/yarizm/EuxrvshPVPBOTv0.01)
 
 ## 目录结构
 
@@ -41,84 +22,71 @@ astrbot_plugin_euxrvsh_pvp/
   requirements.txt
   plugin/
   euxrvsh_core/
+
+插件运行后会自动初始化：
+
+<AstrBot data>/plugin_data/astrbot_plugin_euxrvsh_pvp/
+  runtime.db
+  storage.json
+  roles/
+    builtin/
+      output_king.json
+    custom/
 ```
 
-核心代码说明：
+## 存储设计
 
-- `astrbot_plugin_euxrvsh_pvp/main.py`
-  AstrBot 插件入口、LLM Tool 定义、`/pvp` 命令入口
-- `astrbot_plugin_euxrvsh_pvp/plugin/controller.py`
-  插件展示层和文本渲染
-- `astrbot_plugin_euxrvsh_pvp/euxrvsh_core/services/battle_service.py`
-  战斗主逻辑
-- `astrbot_plugin_euxrvsh_pvp/euxrvsh_core/repositories/sqlite_repository.py`
-  SQLite 存储实现
+插件现在不再把角色定义写进数据库。
+
+- `runtime.db`
+  只保存对局运行态：
+  - `battles`
+  - `battle_players`
+  - `battle_effects`
+  - `battle_cooldowns`
+  - `battle_log`
+- `storage.json`
+  保存当前存储结构的元信息和目录位置
+- `roles/builtin/*.json`
+  官方内置角色文件
+- `roles/custom/*.json`
+  用户自定义角色文件
 
 ## 安装方式
 
-### 1. 本地 AstrBot
-
-把整个插件目录 `astrbot_plugin_euxrvsh_pvp` 复制到 AstrBot 的插件目录：
+把整个 `astrbot_plugin_euxrvsh_pvp` 目录复制到 AstrBot 的插件目录：
 
 ```text
-<AstrBot data 目录>/plugins/astrbot_plugin_euxrvsh_pvp
+<AstrBot data>/plugins/astrbot_plugin_euxrvsh_pvp
 ```
 
-例如 Windows 默认可能是：
+例如 Windows 本地常见路径：
 
 ```text
 C:\Users\<用户名>\.astrbot\data\plugins\astrbot_plugin_euxrvsh_pvp
 ```
 
-复制后重载插件或重启 AstrBot。
-
-### 2. Docker 中的 AstrBot
-
-推荐把插件放到宿主机挂载出来的 `data/plugins/` 目录，而不是只放进容器内部。
-
-如果你的容器把宿主机目录挂载到了 `/AstrBot/data`，那么目标路径通常是：
-
-```text
-<宿主机 data 目录>/plugins/astrbot_plugin_euxrvsh_pvp
-```
-
-然后重启容器：
-
-```bash
-docker restart <astrbot_container>
-```
-
-如果只是临时测试，也可以直接拷贝进容器：
-
-```bash
-docker cp ./astrbot_plugin_euxrvsh_pvp <astrbot_container>:/AstrBot/data/plugins/
-docker restart <astrbot_container>
-```
+如果你用 Docker 部署 AstrBot，推荐把插件放到宿主机挂载出来的 `data/plugins/` 目录，再重启容器。
 
 ## 插件配置
 
-当前插件配置项非常少：
+当前配置项：
 
+- `storage_root`
+  插件存储根目录。留空时默认写到：
+  `plugin_data/astrbot_plugin_euxrvsh_pvp/`
 - `sqlite_path`
-  可选。自定义 SQLite 数据文件路径。留空时自动使用 AstrBot 插件数据目录
+  兼容字段。仅用于旧版本迁移；如果填写，会把它的父目录视为 `storage_root`
 - `enable_fallback_commands`
-  是否开启 `/pvp` 兜底命令
+  是否开启 `/pvp` 命令组
 - `enable_debug_tools`
   是否开启调试工具
 
-默认情况下，SQLite 数据会写入：
-
-```text
-/AstrBot/data/plugin_data/astrbot_plugin_euxrvsh_pvp/battle.sqlite
-```
-
-如果是宿主机挂载目录，对应的就是宿主机 `data/plugin_data/astrbot_plugin_euxrvsh_pvp/battle.sqlite`。
-
 ## 使用方式
 
-### 自然语言触发
+### 自然语言
 
-推荐直接和 AstrBot 对话，例如：
+可以直接对 AstrBot 说：
 
 - `开一把 2 人局`
 - `我选输出大王`
@@ -126,17 +94,8 @@ docker restart <astrbot_container>
 - `我用链爆打 2 号`
 - `看看战况`
 - `结束回合`
-- `重开这局`
-
-当意图不明确时，插件会引导 AI 优先先确认，例如：
-
-- `你是想继续进行 PvP 对局，还是只是普通聊天？`
-- `你要对几号位执行这个操作？`
-- `你想用哪个技能？当前可用技能是：聚势、侧闪、链爆。`
 
 ### `/pvp` 兜底命令
-
-也可以手动使用：
 
 ```text
 /pvp help
@@ -148,7 +107,7 @@ docker restart <astrbot_container>
 /pvp reset
 ```
 
-## 已注册的 AI Tools
+## 已注册 AI Tools
 
 - `pvp_create_battle`
 - `pvp_list_roles`
@@ -159,14 +118,99 @@ docker restart <astrbot_container>
 - `pvp_view_state`
 - `pvp_reset_battle`
 
-## 开发与验证
+## 角色扩展
 
-本项目当前主要交付物是插件目录 `astrbot_plugin_euxrvsh_pvp/`。
+### 扩展方式
 
-如果需要本地检查代码，可以运行：
+1. 把角色 JSON 文件放进：
 
-```bash
-python -m py_compile astrbot_plugin_euxrvsh_pvp/main.py
-pytest tests -q -p no:cacheprovider
+```text
+<storage_root>/roles/custom/
 ```
 
+2. 重载插件或重启 AstrBot
+
+3. 用 `/pvp roles` 或自然语言确认角色是否加载成功
+
+### 角色 JSON 结构
+
+```json
+{
+  "role_id": "custom_role",
+  "name": "自定义角色",
+  "summary": "一句话介绍",
+  "stats": {
+    "hp": 24,
+    "atk": 6,
+    "defense": 2,
+    "max_ap": 2
+  },
+  "skills": [
+    {
+      "key": "sample_skill",
+      "name": "示例技能",
+      "description": "技能描述",
+      "ap_cost": 1,
+      "cooldown": 2,
+      "target_type": "self",
+      "branches": [
+        {
+          "when": "always",
+          "actions": [
+            {
+              "type": "append_detail",
+              "text": "这里是技能效果描述。"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+```
+
+### 当前支持的条件
+
+- `always`
+- `focus_lt`
+- `focus_gte`
+
+### 当前支持的动作
+
+- `set_focus`
+- `add_focus`
+- `set_effect`
+- `clear_effect`
+- `attack`
+- `append_detail`
+
+`attack` 动作当前支持这些参数：
+
+- `base_damage`
+- `allow_multiplier`
+- `grant_focus`
+- `apply_burn`
+
+## 当前内置角色
+
+- `output_king` / `输出大王`
+
+内置技能：
+
+- `focus_shift` / `聚势`
+- `sidestep` / `侧闪`
+- `chain_burst` / `链爆`
+
+## 开发与验证
+
+本地检查：
+
+```bash
+python -m compileall astrbot_plugin_euxrvsh_pvp tests
+python -m pytest tests -q -p no:cacheprovider
+```
+
+当前这轮重构对应的验证结果：
+
+- `5 passed`
+- `compileall` 通过

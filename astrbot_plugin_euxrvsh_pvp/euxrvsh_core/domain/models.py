@@ -5,6 +5,24 @@ from typing import Any
 
 
 @dataclass(frozen=True)
+class SkillConditionDefinition:
+    kind: str
+    value: int | None = None
+
+
+@dataclass(frozen=True)
+class SkillActionDefinition:
+    kind: str
+    params: dict[str, Any] = field(default_factory=dict)
+
+
+@dataclass(frozen=True)
+class SkillBranchDefinition:
+    when: SkillConditionDefinition
+    actions: tuple[SkillActionDefinition, ...]
+
+
+@dataclass(frozen=True)
 class RoleSkillDefinition:
     key: str
     name: str
@@ -12,6 +30,15 @@ class RoleSkillDefinition:
     ap_cost: int
     cooldown: int
     target_type: str
+    branches: tuple[SkillBranchDefinition, ...] = ()
+
+
+@dataclass(frozen=True)
+class RoleStatsDefinition:
+    hp: int
+    atk: int
+    defense: int
+    max_ap: int
 
 
 @dataclass(frozen=True)
@@ -19,11 +46,33 @@ class RoleDefinition:
     role_id: str
     name: str
     summary: str
-    base_hp: int
-    base_atk: int
-    base_defense: int
-    max_ap: int
+    stats: RoleStatsDefinition
     skills: tuple[RoleSkillDefinition, ...]
+    source_kind: str = "builtin"
+    source_path: str = ""
+
+    @property
+    def base_hp(self) -> int:
+        return self.stats.hp
+
+    @property
+    def base_atk(self) -> int:
+        return self.stats.atk
+
+    @property
+    def base_defense(self) -> int:
+        return self.stats.defense
+
+    @property
+    def max_ap(self) -> int:
+        return self.stats.max_ap
+
+
+@dataclass(frozen=True)
+class RoleFileDefinition:
+    role: RoleDefinition
+    source_kind: str
+    source_path: str
 
 
 @dataclass

@@ -10,6 +10,9 @@ from euxrvsh_core.domain import (
     BattleState,
     CharacterRegistry,
     RoleDefinition,
+    RoleSkillDefinition,
+    SkillActionDefinition,
+    SkillConditionDefinition,
 )
 from euxrvsh_core.repositories import GameRepository
 
@@ -18,13 +21,12 @@ class BattleService:
     def __init__(
         self,
         repository: GameRepository,
-        characters: CharacterRegistry | None = None,
+        characters: CharacterRegistry,
         rng: random.Random | None = None,
     ):
         self.repository = repository
-        self.characters = characters or CharacterRegistry()
+        self.characters = characters
         self.rng = rng or random.Random()
-        self.repository.initialize(self.characters.all())
 
     def create_battle(self, session_id: str, player_count: int | str) -> ActionResult:
         try:
@@ -63,17 +65,15 @@ class BattleService:
         current = state.get_player_by_user(user_id)
         if current:
             return current
-
         for player in state.players:
             if not player.user_id:
                 player.user_id = user_id
                 self._save_state(state)
                 return player
-
         raise ValueError("当前对局已满，无法加入。")
 
     def list_roles(self) -> list[RoleDefinition]:
-        return self.repository.list_roles()
+        return self.characters.all()
 
     def pick_role(self, session_id: str, user_id: str, role_key: str) -> ActionResult:
         state = self._require_battle(session_id)
@@ -104,7 +104,6 @@ class BattleService:
         player.set_effect("focus", stacks=0, remaining_turns=-1)
 
         details = [f"你已绑定到 {player.player_slot} 号位，角色为 {role.name}。"]
-
         if self._all_players_ready(state):
             state.status = "active"
             state.turn_index = self._first_alive_slot(state)
@@ -131,7 +130,7 @@ class BattleService:
             return ActionResult(ok=False, summary="你的 AP 不足，无法进行普通攻击。", battle_state=state)
 
         actor.ap -= 1
-        summary, details = self._resolve_attack(state, actor, target, base_damage=actor.atk, allow_multiplier=True)
+        summary, details = self._resolve_attack(actor, target, base_damage=actor.atk, allow_multiplier=True)
         self._append_log(
             state,
             actor_slot=actor.player_slot,
@@ -168,12 +167,7 @@ class BattleService:
 
         actor.ap -= skill.ap_cost
         actor.cooldowns[skill.key] = skill.cooldown
-
-        if actor.role_id == "output_king":
-            summary, details = self._use_output_king_skill(state, actor, skill.key, target_slot)
-        else:
-            return ActionResult(ok=False, summary="当前角色尚未实现技能逻辑。", battle_state=state)
-
+        summary, details = self._execute_skill(state, actor, skill, target_slot)
         self._append_log(
             state,
             actor_slot=actor.player_slot,
@@ -207,15 +201,96 @@ class BattleService:
         return ActionResult(ok=True, summary=f"当前对局状态：{detail}", battle_state=state)
 
     def reset_battle(self, session_id: str, user_id: str, force: bool = False) -> ActionResult:
+        del user_id
         state = self.repository.load_battle(session_id)
         if state is None:
             return ActionResult(ok=False, summary="当前没有可重置的对局。")
         if state.status in {"active", "finished"} and not force:
             return ActionResult(ok=False, summary="当前对局已开始，请确认后再强制重置。", battle_state=state)
-        deleted = self.repository.delete_battle(session_id)
-        if not deleted:
+        if not self.repository.delete_battle(session_id):
             return ActionResult(ok=False, summary="重置对局失败。")
         return ActionResult(ok=True, summary="当前会话的 PvP 对局已重置。")
+
+    def _execute_skill(
+        self,
+        state: BattleState,
+        actor: BattlePlayerState,
+        skill: RoleSkillDefinition,
+        target_slot: int | str | None,
+    ) -> tuple[str, list[str]]:
+        target = self._require_target(state, actor, target_slot) if skill.target_type == "enemy" else None
+        details: list[str] = []
+        for branch in skill.branches:
+            if not self._condition_matches(actor, branch.when):
+                continue
+            for action in branch.actions:
+                self._execute_skill_action(actor, skill, action, details, target)
+            summary = f"{actor.player_slot} 号位释放了 {skill.name}。"
+            if target is not None:
+                summary = f"{summary} 目标为 {target.player_slot} 号位。"
+            return summary, details
+        return f"{actor.player_slot} 号位释放了 {skill.name}。", details
+
+    def _condition_matches(self, actor: BattlePlayerState, condition: SkillConditionDefinition) -> bool:
+        focus = self._get_focus(actor)
+        if condition.kind == "always":
+            return True
+        if condition.kind == "focus_lt":
+            return focus < int(condition.value or 0)
+        if condition.kind == "focus_gte":
+            return focus >= int(condition.value or 0)
+        return False
+
+    def _execute_skill_action(
+        self,
+        actor: BattlePlayerState,
+        skill: RoleSkillDefinition,
+        action: SkillActionDefinition,
+        details: list[str],
+        target: BattlePlayerState | None,
+    ) -> None:
+        params = action.params
+        if action.kind == "set_focus":
+            self._set_focus(actor, int(params.get("value", 0)))
+            return
+        if action.kind == "add_focus":
+            self._set_focus(actor, self._get_focus(actor) + int(params.get("value", 0)))
+            return
+        if action.kind == "set_effect":
+            actor.set_effect(
+                str(params["effect_name"]),
+                stacks=int(params.get("stacks", 0)),
+                remaining_turns=int(params.get("remaining_turns", -1)),
+                payload=dict(params.get("payload", {})),
+            )
+            return
+        if action.kind == "clear_effect":
+            actor.remove_effect(str(params["effect_name"]))
+            return
+        if action.kind == "append_detail":
+            details.append(str(params.get("text", "")))
+            return
+        if action.kind == "attack":
+            if target is None:
+                raise ValueError(f"{skill.name} 需要一个有效目标。")
+            summary, attack_details = self._resolve_attack(
+                actor,
+                target,
+                base_damage=int(params.get("base_damage", actor.atk)),
+                allow_multiplier=bool(params.get("allow_multiplier", True)),
+                grant_focus=bool(params.get("grant_focus", True)),
+            )
+            details.append(summary)
+            details.extend(attack_details)
+            burn_config = params.get("apply_burn")
+            if burn_config:
+                stacks = int(burn_config.get("stacks", 1))
+                remaining_turns = int(burn_config.get("remaining_turns", stacks))
+                damage = int(burn_config.get("damage", 2))
+                target.set_effect("burn", stacks=stacks, remaining_turns=remaining_turns, payload={"damage": damage})
+                details.append(f"{target.player_slot} 号位进入灼烧状态，将在每轮开始时受到 {damage} 点伤害。")
+            return
+        raise ValueError(f"不支持的技能动作 `{action.kind}`。")
 
     def _require_battle(self, session_id: str) -> BattleState:
         state = self.repository.load_battle(session_id)
@@ -251,70 +326,18 @@ class BattleService:
         target_slot: int | str | None,
     ) -> BattlePlayerState | None:
         try:
-            target_slot = int(target_slot)
+            slot = int(target_slot)
         except (TypeError, ValueError):
             return None
-        target = state.get_player_by_slot(target_slot)
+        target = state.get_player_by_slot(slot)
         if target is None or not target.role_id or not target.alive:
             return None
         if target.player_slot == actor.player_slot:
             return None
         return target
 
-    def _use_output_king_skill(
-        self,
-        state: BattleState,
-        actor: BattlePlayerState,
-        skill_key: str,
-        target_slot: int | str | None,
-    ) -> tuple[str, list[str]]:
-        details: list[str] = []
-        focus = self._get_focus(actor)
-
-        if skill_key == "focus_shift":
-            if focus < 3:
-                actor.set_effect("fortify", stacks=3, remaining_turns=1)
-                self._set_focus(actor, min(5, focus + 2))
-                summary = f"{actor.player_slot} 号位释放聚势，获得 3 点护甲并叠加 2 层专注。"
-                details.append("护甲会在下一轮开始前生效，用于抵消下一次受到的伤害。")
-                return summary, details
-
-            if focus < 5:
-                actor.set_effect("next_attack_mult", stacks=1, remaining_turns=2, payload={"multiplier": 2})
-                summary = f"{actor.player_slot} 号位释放聚势，下一次普通攻击将造成 2 倍伤害。"
-                return summary, details
-
-            actor.set_effect("next_attack_mult", stacks=1, remaining_turns=2, payload={"multiplier": 3})
-            self._set_focus(actor, 0)
-            summary = f"{actor.player_slot} 号位释放聚势，下一次普通攻击将造成 3 倍伤害，并清空专注。"
-            return summary, details
-
-        if skill_key == "sidestep":
-            actor.set_effect("sidestep", stacks=1, remaining_turns=1)
-            summary = f"{actor.player_slot} 号位进入侧闪状态，下一次受到攻击时将闪避。"
-            return summary, details
-
-        if skill_key == "chain_burst":
-            target = self._require_target(state, actor, target_slot)
-            if target is None:
-                raise ValueError("链爆需要一个有效的敌方目标。")
-            summary, attack_details = self._resolve_attack(
-                state,
-                actor,
-                target,
-                base_damage=actor.atk + 6,
-                allow_multiplier=False,
-                grant_focus=False,
-            )
-            target.set_effect("burn", stacks=2, remaining_turns=2, payload={"damage": 2})
-            attack_details.append(f"{target.player_slot} 号位进入灼烧状态，将在每轮开始时受到 2 点伤害。")
-            return f"{actor.player_slot} 号位释放链爆。{summary}", attack_details
-
-        raise ValueError(f"尚未实现技能 `{skill_key}`。")
-
     def _resolve_attack(
         self,
-        state: BattleState,
         actor: BattlePlayerState,
         target: BattlePlayerState,
         *,
@@ -346,9 +369,8 @@ class BattleService:
         if sidestep is not None:
             target.remove_effect("sidestep")
             self._set_focus(target, min(5, self._get_focus(target) + 1))
-            summary = f"{target.player_slot} 号位触发侧闪，完全闪避了这次攻击。"
             details.append("闪避成功后，目标额外获得 1 层专注。")
-            return summary, details
+            return f"{target.player_slot} 号位触发侧闪，完全闪避了这次攻击。", details
 
         target_focus = self._get_focus(target)
         if target_focus >= 5:
@@ -359,9 +381,8 @@ class BattleService:
         if dodge_chance > 0:
             roll = self.rng.randint(1, 100)
             if roll <= dodge_chance:
-                summary = f"{target.player_slot} 号位通过侧身闪避，规避了全部伤害。"
                 details.append(f"闪避判定成功：掷骰 {roll} / 阈值 {dodge_chance}。")
-                return summary, details
+                return f"{target.player_slot} 号位通过侧身闪避，规避了全部伤害。", details
             details.append(f"闪避判定失败：掷骰 {roll} / 阈值 {dodge_chance}。")
 
         fortify = target.get_effect("fortify")

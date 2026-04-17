@@ -20,6 +20,7 @@ class PvpApplication:
         self.battle_service = battle_service
 
     def create_battle(self, session_id: str, user_id: str, player_count: int | str) -> str:
+        del user_id
         return self._render_result(self.battle_service.create_battle(session_id, player_count))
 
     def list_roles(self) -> str:
@@ -29,7 +30,9 @@ class PvpApplication:
 
         lines = ["可选角色："]
         for role in roles:
+            source = f"{role.source_kind}:{role.source_path}" if role.source_path else role.source_kind
             lines.append(f"- {role.name} ({role.role_id})：{role.summary}")
+            lines.append(f"  来源：{source}")
             for skill in role.skills:
                 lines.append(
                     f"  技能 {skill.name} / {skill.key}：AP {skill.ap_cost}，CD {skill.cooldown}，{skill.description}"

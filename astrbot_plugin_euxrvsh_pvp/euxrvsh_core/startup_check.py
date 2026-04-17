@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import sqlite3
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -12,26 +11,22 @@ class StartupCheckResult:
     warnings: tuple[str, ...] = ()
 
 
-def run_startup_check(sqlite_path: str) -> StartupCheckResult:
-    path = Path(sqlite_path).expanduser()
+def run_startup_check(storage_root: str, *, sqlite_path_compat_used: bool = False) -> StartupCheckResult:
+    root = Path(storage_root).expanduser()
     errors: list[str] = []
+    warnings: list[str] = []
 
-    if path.exists() and path.is_dir():
-        errors.append(f"SQLite 路径 `{path}` 指向的是目录，而不是数据库文件。")
+    if root.exists() and root.is_file():
+        errors.append(f"storage_root `{root}` 指向的是文件，而不是目录。")
         return StartupCheckResult(ok=False, errors=tuple(errors))
 
     try:
-        path.parent.mkdir(parents=True, exist_ok=True)
+        root.mkdir(parents=True, exist_ok=True)
     except OSError as exc:
-        errors.append(f"无法创建 SQLite 数据目录 `{path.parent}`：{exc}")
+        errors.append(f"无法创建插件存储目录 `{root}`：{exc}")
         return StartupCheckResult(ok=False, errors=tuple(errors))
 
-    try:
-        conn = sqlite3.connect(path)
-        conn.execute("PRAGMA journal_mode=WAL")
-        conn.close()
-    except sqlite3.Error as exc:
-        errors.append(f"无法初始化 SQLite 数据库 `{path}`：{exc}")
-        return StartupCheckResult(ok=False, errors=tuple(errors))
+    if sqlite_path_compat_used:
+        warnings.append("检测到仍在使用兼容字段 `sqlite_path`，当前已将其父目录视为 storage_root。")
 
-    return StartupCheckResult(ok=True)
+    return StartupCheckResult(ok=True, warnings=tuple(warnings))

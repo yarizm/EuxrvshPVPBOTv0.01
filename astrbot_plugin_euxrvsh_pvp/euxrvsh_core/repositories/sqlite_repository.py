@@ -6,19 +6,12 @@ from contextlib import contextmanager
 from datetime import UTC, datetime
 from pathlib import Path
 
-from euxrvsh_core.domain.models import (
-    BattleEffectState,
-    BattleLogEntry,
-    BattlePlayerState,
-    BattleState,
-    RoleDefinition,
-    RoleSkillDefinition,
-)
+from euxrvsh_core.domain.models import BattleEffectState, BattleLogEntry, BattlePlayerState, BattleState
 from euxrvsh_core.repositories.base import GameRepository
 
 
 class SQLiteGameRepository(GameRepository):
-    def __init__(self, sqlite_path: str):
+    def __init__(self, sqlite_path: str | Path):
         self.sqlite_path = Path(sqlite_path).expanduser().resolve()
         self.sqlite_path.parent.mkdir(parents=True, exist_ok=True)
 
@@ -35,27 +28,15 @@ class SQLiteGameRepository(GameRepository):
         finally:
             conn.close()
 
-    def initialize(self, role_definitions: list[RoleDefinition]) -> None:
+    def initialize(self) -> None:
         with self.connection() as conn:
             self._create_schema(conn)
-            self._upsert_roles(conn, role_definitions)
-
-    def list_roles(self) -> list[RoleDefinition]:
-        with self.connection() as conn:
-            rows = conn.execute("SELECT * FROM role_definitions ORDER BY name ASC").fetchall()
-        return [self._row_to_role(row) for row in rows]
-
-    def get_role(self, role_id: str) -> RoleDefinition | None:
-        with self.connection() as conn:
-            row = conn.execute("SELECT * FROM role_definitions WHERE role_id = ?", (role_id,)).fetchone()
-        return self._row_to_role(row) if row else None
 
     def load_battle(self, session_id: str) -> BattleState | None:
         with self.connection() as conn:
             battle_row = conn.execute("SELECT * FROM battles WHERE session_id = ?", (session_id,)).fetchone()
             if battle_row is None:
                 return None
-
             player_rows = conn.execute(
                 "SELECT * FROM battle_players WHERE session_id = ? ORDER BY player_slot ASC",
                 (session_id,),
@@ -92,8 +73,7 @@ class SQLiteGameRepository(GameRepository):
             )
 
         for row in effect_rows:
-            player = players_by_slot[int(row["player_slot"])]
-            player.effects.append(
+            players_by_slot[int(row["player_slot"])].effects.append(
                 BattleEffectState(
                     effect_name=str(row["effect_name"]),
                     stacks=int(row["stacks"]),
@@ -103,8 +83,7 @@ class SQLiteGameRepository(GameRepository):
             )
 
         for row in cooldown_rows:
-            player = players_by_slot[int(row["player_slot"])]
-            player.cooldowns[str(row["skill_key"])] = int(row["remaining_turns"])
+            players_by_slot[int(row["player_slot"])].cooldowns[str(row["skill_key"])] = int(row["remaining_turns"])
 
         logs = [
             BattleLogEntry(
@@ -159,7 +138,6 @@ class SQLiteGameRepository(GameRepository):
                     battle_state.updated_at,
                 ),
             )
-
             conn.execute("DELETE FROM battle_players WHERE session_id = ?", (battle_state.session_id,))
             conn.execute("DELETE FROM battle_effects WHERE session_id = ?", (battle_state.session_id,))
             conn.execute("DELETE FROM battle_cooldowns WHERE session_id = ?", (battle_state.session_id,))
@@ -302,71 +280,7 @@ class SQLiteGameRepository(GameRepository):
                 detail_json TEXT NOT NULL,
                 created_at TEXT NOT NULL
             );
-
-            CREATE TABLE IF NOT EXISTS role_definitions (
-                role_id TEXT PRIMARY KEY,
-                name TEXT NOT NULL,
-                summary TEXT NOT NULL,
-                base_hp INTEGER NOT NULL,
-                base_atk INTEGER NOT NULL,
-                base_defense INTEGER NOT NULL,
-                max_ap INTEGER NOT NULL,
-                skills_json TEXT NOT NULL
-            );
             """
-        )
-
-    def _upsert_roles(self, conn: sqlite3.Connection, role_definitions: list[RoleDefinition]) -> None:
-        for role in role_definitions:
-            conn.execute(
-                """
-                INSERT INTO role_definitions (
-                    role_id, name, summary, base_hp, base_atk, base_defense, max_ap, skills_json
-                )
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?)
-                ON CONFLICT(role_id) DO UPDATE SET
-                    name = excluded.name,
-                    summary = excluded.summary,
-                    base_hp = excluded.base_hp,
-                    base_atk = excluded.base_atk,
-                    base_defense = excluded.base_defense,
-                    max_ap = excluded.max_ap,
-                    skills_json = excluded.skills_json
-                """,
-                (
-                    role.role_id,
-                    role.name,
-                    role.summary,
-                    role.base_hp,
-                    role.base_atk,
-                    role.base_defense,
-                    role.max_ap,
-                    json.dumps([skill.__dict__ for skill in role.skills], ensure_ascii=False),
-                ),
-            )
-
-    def _row_to_role(self, row: sqlite3.Row) -> RoleDefinition:
-        skills_raw = json.loads(row["skills_json"])
-        skills = tuple(
-            RoleSkillDefinition(
-                key=str(skill["key"]),
-                name=str(skill["name"]),
-                description=str(skill["description"]),
-                ap_cost=int(skill["ap_cost"]),
-                cooldown=int(skill["cooldown"]),
-                target_type=str(skill["target_type"]),
-            )
-            for skill in skills_raw
-        )
-        return RoleDefinition(
-            role_id=str(row["role_id"]),
-            name=str(row["name"]),
-            summary=str(row["summary"]),
-            base_hp=int(row["base_hp"]),
-            base_atk=int(row["base_atk"]),
-            base_defense=int(row["base_defense"]),
-            max_ap=int(row["max_ap"]),
-            skills=skills,
         )
 
     @staticmethod
